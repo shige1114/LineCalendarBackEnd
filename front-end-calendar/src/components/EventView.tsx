@@ -39,10 +39,10 @@ const EventView: React.FC<Props> = ({ calendar, calendar_id, user_id, events }) 
 				</tr>
 				{calendar.map((week,index) => {
 					return (
-						<tr>
+						<tr key={index}>
 							{week.map((date,index) => {
 								return (
-									<th>
+									<th key={index}>
 										<Date date={date} events={events} calendar_id={calendar_id} />
 									</th>
 								)
