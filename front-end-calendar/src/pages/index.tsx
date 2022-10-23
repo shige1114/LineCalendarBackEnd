@@ -20,7 +20,7 @@ const EventViewPage: React.FC<Props> = ({ calendar_id, user_id, events, calendar
                 calendar_id={calendar_id}
                 user_id={user_id}
                 events={events}
-            />            
+            />
         </>
 
     )
@@ -28,47 +28,42 @@ const EventViewPage: React.FC<Props> = ({ calendar_id, user_id, events, calendar
 
 }
 export async function getServerSideProps(context: any) {
-    try{
-        const {liff} = context
-        const roomId = liff.getProfile()?.groupId
-        console.log(roomId)
-        const endpoint = "https://line-chat-bot-1114.herokuapp.com/webview/event_view"//'https://line-chat-bot-1114.herokuapp.com/webview/event_view'
-        const keyword = {
-            room_id: roomId,
-        }
-        const JSONdata = JSON.stringify(keyword)
-        const options = {
-            method:'POST',
-            mode:"cors" as RequestMode,
-            headers: {
-                'Content-Type':'application/json',
-            },
-            body: JSONdata,
-        }    
-        const response = await fetch(endpoint, options)
-        const result = await response.json()
-        
-        const calendar_num = getCalendar("2022"+"-"+result.calendar["month"])
-        
-        const events = result.events
-        
-    
-        return {
-            props: {
-                calendar:calendar_num,
-                events:events,
-                calendar_id:roomId,
-                
-            } // will be passed to the page component as props
-        }
-    }catch(e){
-        return {
-            props: {
-                error :true,
-            }
-        }
+
+    console.log('error')
+    const { liff } = context
+    const roomId = liff.getProfile()?.groupId
+    console.log(roomId)
+    const endpoint = "https://line-chat-bot-1114.herokuapp.com/webview/event_view"//'https://line-chat-bot-1114.herokuapp.com/webview/event_view'
+    const keyword = {
+        room_id: roomId,
     }
-    
+    const JSONdata = JSON.stringify(keyword)
+    const options = {
+        method: 'POST',
+        mode: "cors" as RequestMode,
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSONdata,
+    }
+    const response = await fetch(endpoint, options)
+    const result = await response.json()
+
+    const calendar_num = getCalendar("2022" + "-" + result.calendar["month"])
+
+    const events = result.events
+
+
+    return {
+        props: {
+            calendar: calendar_num,
+            events: events,
+            calendar_id: roomId,
+
+        } // will be passed to the page component as props
+    }
+
+
 }
 
 export default EventViewPage
