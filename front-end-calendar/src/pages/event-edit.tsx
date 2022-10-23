@@ -34,8 +34,9 @@ const EventEditPage: React.FC<Props> = ({ user_name, date, events, calendar_id }
 export async function getServerSideProps(context: any) {
     const calendarId = context.query.calendar_id
     const date = context.query.date
-    const {liff} = context 
+    const {liff} = context
     const user_name = (await liff.getProfile()).displayName
+    console.log(user_name)
     const endpoint = "https://line-chat-bot-1114.herokuapp.com/webview/event_view"//'https://line-chat-bot-1114.herokuapp.com/webview/event_view'
     const keyword = {
         room_id: calendarId,

@@ -31,6 +31,7 @@ export async function getServerSideProps(context: any) {
     try{
         const {liff} = context
         const roomId = liff.getProfile()?.groupId
+        console.log(roomId)
         const endpoint = "https://line-chat-bot-1114.herokuapp.com/webview/event_view"//'https://line-chat-bot-1114.herokuapp.com/webview/event_view'
         const keyword = {
             room_id: roomId,
