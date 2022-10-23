@@ -11,9 +11,9 @@ function MyApp({ Component, pageProps }: any) {
     // to avoid `window is not defined` error
     import("@line/liff").then((liff:any) => {
       console.log("start liff.init()...");
-      console.log(">>>>"+process.env.LIFF_ID);
+      console.log(">>>>"+process.env.NEXT_PUBLIC_LIFF_ID);
       liff
-        .init({ liffId: process.env.NEXT_PUBLIC_LIFF_ID })
+        .init({ LIFF_ID: process.env.NEXT_PUBLIC_LIFF_ID })
         .then(() => {
           console.log("liff.init() done");
           setLiffObject(liff);
