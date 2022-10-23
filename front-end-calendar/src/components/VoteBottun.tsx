@@ -6,7 +6,7 @@ import { Container, Row, Col } from 'react-bootstrap'
 import Button from 'react-bootstrap/Button';
 interface Props {
     event: Event
-    member: User
+    member: string
 }
 
 const VoteButton: React.FC<Props> = ({ event, member }) => {
@@ -17,7 +17,7 @@ const VoteButton: React.FC<Props> = ({ event, member }) => {
         const voted_people = event.voted_people.split(',')
         console.log(voted_people)
         voted_people.map((p:string)=> {
-            if (p == member.id){setVote('down')}
+            if (p == member){setVote('down')}
         })
     },[])
     useEffect(()=>{
@@ -30,9 +30,8 @@ const VoteButton: React.FC<Props> = ({ event, member }) => {
         }
     },[vote])
     const updateEvent = async () => {
-        const end_point = "http://127.0.0.1:5000/webview/event_vote"
-        console.log(member.id)
-        const data = { "event_id": event.id, "user_id": member.id, "vote": vote }
+        const end_point = "https://line-chat-bot-1114.herokuapp.com/webview/event_vote"
+        const data = { "event_id": event.id, "user_id": member, "vote": vote }
         if (vote == 'up') {
             setVotenum(vote_num + 1)
         } else if(vote == 'down') {

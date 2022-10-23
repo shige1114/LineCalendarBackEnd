@@ -6,16 +6,15 @@ import { Container, Row, Col, } from 'react-bootstrap'
 import { useRouter } from 'next/router'
 interface Props {
     date: number
-    member: User
     calendar_id:string
 }
 
-const EventEdit: React.FC<Props> = ({ member, date,calendar_id }) => {
+const EventEdit: React.FC<Props> = ({ date,calendar_id }) => {
     const router = useRouter()
     const buttonClick = async (context: any) => {
         context.preventDefault()
 
-        const endpoint = 'http://127.0.0.1:5000/webview/event_edit'
+        const endpoint = 'https://line-chat-bot-1114.herokuapp.com/webview/event_edit'
         const body = context.target
         const data = {
             name: body.formBasicName.value,

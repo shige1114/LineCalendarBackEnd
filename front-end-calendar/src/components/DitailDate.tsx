@@ -8,7 +8,7 @@ import VoteButton from './VoteBottun';
 interface Props {
     events: Event[]
     date: number
-    user: User
+    user: string
 }
 
 const ViewCalendar: React.FC<Props> = ({ events, date, user }) => {
