@@ -5,7 +5,6 @@ import { useState, useEffect } from "react";
 function MyApp({ Component, pageProps }: any) {
   const [liffObject, setLiffObject] = useState(null);
   const [liffError, setLiffError] = useState(null);
-
   // Execute liff.init() when the app is initialized
   useEffect(() => {
     // to avoid `window is not defined` error
@@ -13,7 +12,7 @@ function MyApp({ Component, pageProps }: any) {
       console.log("start liff.init()...");
       console.log(">>>>"+process.env.NEXT_PUBLIC_LIFF_ID);
       liff
-        .init({ LIFF_ID: process.env.NEXT_PUBLIC_LIFF_ID })
+        .init({ liffId: process.env.NEXT_PUBLIC_LIFF_ID })
         .then(() => {
           console.log("liff.init() done");
           setLiffObject(liff);
