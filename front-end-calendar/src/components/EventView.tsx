@@ -31,16 +31,16 @@ const EventView: React.FC<Props> = ({ calendar, calendar_id, user_id, events }) 
 		<>
 			<td>
 				<tr>
-					{weeks.map(d => {
+					{weeks.map((d,index) => {
 						return (
-							<th id='date'> {d} </th>
+							<th key={index}> {d} </th>
 						)
 					})}
 				</tr>
-				{calendar.map((week: any) => {
+				{calendar.map((week,index) => {
 					return (
 						<tr>
-							{week.map((date: any) => {
+							{week.map((date,index) => {
 								return (
 									<th>
 										<Date date={date} events={events} calendar_id={calendar_id} />

@@ -36,7 +36,7 @@ const Date: React.FC<Props> = ({ date, events,calendar_id }) => {
 		<>
 
 			{date != 0 ? (
-				<Card style={{ width: windowSize.width / 7, height: windowSize.height / 4 }} onClick={() => setDate(date)}>
+				<Card key={date} style={{ width: windowSize.width / 7, height: windowSize.height / 4 }} onClick={() => setDate(date)}>
 					<Card.Body>
 						<Card.Title>{date}</Card.Title>
 						<Card.Text style={{  }} >
