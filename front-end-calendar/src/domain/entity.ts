@@ -38,6 +38,6 @@ export type Group = {
 export type PageProps = {
     liff: any,
     liffError: any,
-    user_name: any,
+    user_name: string,
 
 }
