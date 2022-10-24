@@ -6,12 +6,12 @@ import styles from '../styles/Home.module.css'
 import Button from 'react-bootstrap/Button';
 const Home: NextPage = (props:any) => {
   const { liff, liffError } = props;
-  const calendar_id = (liff != null)?liff.getContext()?.groupId:''
-  console.log(liffError)
+
+  console.log(liff.getContext())
   const router= useRouter()
   const onClkickMove = () => {
 		const keyword = {
-			calendar_id:calendar_id
+			calendar_id:""
 		}
 		router.push({ pathname: 'event-view', query: keyword })
 	}

@@ -2,8 +2,6 @@ import React from 'react'
 import { Event } from 'src/domain/entity'
 import { getCalendar } from "src/pages/api/getCalendar"
 import EventView from 'src/components/EventView';
-import { getSystemErrorMap } from 'util';
-import liff from '@line/liff/dist/lib';
 interface Props {
     error: Boolean | null
     calendar_id: string
