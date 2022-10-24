@@ -9,6 +9,7 @@ const Home: NextPage = (...props:any) => {
   const liff = props.liff
   const token = (liff!=null)? liff.getAccessToken() : ""
   const onClkickMove = () => {
+    console.log(token)
 		const keyword = {
 			calendar_id:""
 		}
@@ -17,7 +18,6 @@ const Home: NextPage = (...props:any) => {
   return (
     
     <>
-      <>{token}</>
       <Button onClick={()=>onClkickMove()}>
         イベント登録
       </Button>
