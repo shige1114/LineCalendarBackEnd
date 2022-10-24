@@ -43,12 +43,10 @@ const Date: React.FC<Props> = ({ date, events,calendar_id }) => {
 
 							<ul>
 								{
-									events.map((e: Event) => {
+									events.map((e: Event,index) => {
 										if (e.date == date.toString()) {
 											return (
-											<>
-												<li>{e.name}:{e.vote_num}票</li>	
-											</>
+												<li key={index}>{e.name}</li>	
 
 											)
 										} else {

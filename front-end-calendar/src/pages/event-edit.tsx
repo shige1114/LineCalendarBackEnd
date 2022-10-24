@@ -4,17 +4,22 @@ import { Event, User } from 'src/domain/entity'
 import { useRouter } from 'next/router'
 import DitailDate from 'src/components/DitailDate'
 import EventEdit from 'src/components/EventEdit'
-import liff from '@line/liff/dist/lib'
+
 
 interface Props {
-    user_name: string
+
     date: number
     events: Event[]
     calendar_id: string
-}
-const EventEditPage: React.FC<Props> = ({ user_name, date, events, calendar_id }) => {
-    const router = useRouter()
+    pageprops:any
 
+}
+const EventEditPage: React.FC<Props> = ({ date, events, calendar_id,...pageprops }) => {
+    const router = useRouter()
+    const [user_name , setName] = useState((pageprops.user_name!="")?(pageprops.user_name):(""))
+    console.log(pageprops)
+    
+    //const user_name = (liff.isLoggedin())?liff.getProfile():""
     return (
         <>
 
@@ -34,10 +39,7 @@ const EventEditPage: React.FC<Props> = ({ user_name, date, events, calendar_id }
 export async function getServerSideProps(context: any) {
     const calendarId = context.query.calendar_id
     const date = context.query.date
-    const {liff} = context
-    const user_name = (await liff.getProfile()).displayName
-    console.log(user_name)
-    const endpoint = "https://line-chat-bot-1114.herokuapp.com/webview/event_view"//'https://line-chat-bot-1114.herokuapp.com/webview/event_view'
+    const endpoint = 'http://localhost:5000/webview/event_view'//"https://line-chat-bot-1114.herokuapp.com/webview/event_view"//
     const keyword = {
         room_id: calendarId,
     }
@@ -55,7 +57,6 @@ export async function getServerSideProps(context: any) {
     const result = await response.json()
     return {
         props: {
-            user_name: user_name,
             date: date,
             events: result.events,
             calendar_id: calendarId,

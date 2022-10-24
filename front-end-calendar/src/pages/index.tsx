@@ -1,28 +1,66 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
-import { useRouter } from 'next/router'
-import styles from '../styles/Home.module.css'
-import Button from 'react-bootstrap/Button';
-const Home: NextPage = (...props:any) => {
-  const router= useRouter()
-  const liff = props.liff
-  const token = (liff!=null)? liff.getAccessToken() : ""
-  const onClkickMove = () => {
-    console.log(token)
-		const keyword = {
-			calendar_id:""
-		}
-		router.push({ pathname: 'event-view', query: keyword })
-	}
-  return (
+import React from 'react'
+import { Event } from 'src/domain/entity'
+import { getCalendar } from "src/pages/api/getCalendar"
+import EventView from 'src/components/EventView';
+interface Props {
+    error: Boolean | null
+    calendar_id: string
+    user_id: string
+    events: Event[]
+    calendar: number[][]
+}
+const EventViewPage: React.FC<Props> = ({ calendar_id, user_id, events, calendar }) => {
+
+    return (
+        <>
+            <EventView
+                calendar={calendar}
+                calendar_id={calendar_id}
+                user_id={user_id}
+                events={events}
+            />
+        </>
+
+    )
+
+
+}
+export async function getServerSideProps(context: any) {
     
-    <>
-      <Button onClick={()=>onClkickMove()}>
-        イベント登録
-      </Button>
-    </>
-  )
+    
+    const roomId = context.query.room_id
+    console.log(roomId)
+    const endpoint ="http://localhost:5000/webview/event_view"// 'https://line-chat-bot-1114.herokuapp.com/webview/event_view'//
+    const keyword = {
+        room_id: roomId,
+    }
+    const JSONdata = JSON.stringify(keyword)
+    const options = {
+        method: 'POST',
+        mode: "cors" as RequestMode,
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSONdata,
+    }
+    const response = await fetch(endpoint, options)
+    const result = await response.json()
+
+    const calendar_num = getCalendar("2022" + "-" + result.calendar["month"])
+
+    const events = result.events
+
+
+    return {
+        props: {
+            calendar: calendar_num,
+            events: events,
+            calendar_id: roomId,
+
+        } // will be passed to the page component as props
+    }
+
+
 }
 
-export default Home
+export default EventViewPage

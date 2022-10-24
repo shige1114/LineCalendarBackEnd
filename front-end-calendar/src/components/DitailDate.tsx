@@ -18,12 +18,12 @@ const ViewCalendar: React.FC<Props> = ({ events, date, user }) => {
             <h1>{date}日</h1>
             {events.length > 0 ? (
                 <ul>
-                    {events.map((e: Event) => {
+                    {events.map((e: Event,index) => {
                         {
                             if (e.date == date.toString()) {
                                 ()=>setHasEvent(true)
                                 return (
-                                    <li>
+                                    <li key={index}>
                                         <p>{e.start_time}~{e.end_time}</p>
                                         <p>{e.name}</p>
                                         <VoteButton event={e} member={user}/>
