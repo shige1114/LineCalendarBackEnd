@@ -67,7 +67,7 @@ const VoteButton: React.FC<Props> = ({ event, member }) => {
                  投票数:{vote_num}
                 </Button>
             ):(
-                <h5>you can't vote</h5>
+                <h5>you cant vote</h5>
             )}
             
 

@@ -24,8 +24,8 @@ const ViewCalendar: React.FC<Props> = ({ events, date, user }) => {
                                 ()=>setHasEvent(true)
                                 return (
                                     <li key={index}>
-                                        <p>{e.start_time}~{e.end_time}</p>
-                                        <p>{e.name}</p>
+                                        <p>時間：{e.start_time}~{e.end_time}</p>
+                                        <p>名前：{e.name}</p>
                                         <VoteButton event={e} member={user}/>
                                     </li>
 
