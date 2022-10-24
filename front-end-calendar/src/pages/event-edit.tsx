@@ -17,7 +17,7 @@ interface Props {
 }
 const EventEditPage: React.FC<Props> = ({ date, events, calendar_id, pageProps}) => {
     const router = useRouter()
-    const [user_name, setName] = useState(("user_name" in pageProps && pageProps.user_name != "" && typeof(pageProps.user_name)=="string") ? (pageProps.user_name) : (""))
+    const [user_name, setName] = useState(("user_name" in pageProps && pageProps["user_name"] != "" && typeof(pageProps["user_name"])=="string") ? (pageProps["user_name"]) : (""))
     //const user_name = (liff.isLoggedin())?liff.getProfile():""
     return (
         <>
