@@ -7,7 +7,7 @@ import Button from 'react-bootstrap/Button';
 const Home: NextPage = (props:any) => {
   const { liff, liffError } = props;
 
-  console.log(liff.getContext())
+  
   const router= useRouter()
   const onClkickMove = () => {
 		const keyword = {
@@ -18,6 +18,7 @@ const Home: NextPage = (props:any) => {
   return (
     
     <>
+      {console.log(liff.getContext())}
       <Button onClick={()=>onClkickMove()}>
         イベント登録
       </Button>
