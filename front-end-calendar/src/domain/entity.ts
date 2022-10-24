@@ -35,3 +35,9 @@ export type Group = {
     updated: string,
 
 }
+export type PageProps = {
+    liff: any,
+    liffError: any,
+    user_name: any,
+
+}
