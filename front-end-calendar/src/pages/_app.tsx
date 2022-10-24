@@ -18,7 +18,11 @@ function MyApp({ Component, pageProps }: any) {
         .then(() => {
           console.log("liff.init() done");
           setLiffObject(liff);
-
+          liff.getProfile().then((data:any)=>{
+            setUserName(data.displayName)
+          }).catch((error:any)=>{
+            console.log(error.toString())
+          })
         })
         .catch((error: any) => {
           console.log(`liff.init() failed: ${error}`);
@@ -30,20 +34,7 @@ function MyApp({ Component, pageProps }: any) {
           setLiffError(error.toString());
         });
     });
-    
-      try {
-        if (liffObject != null) {
-          liffObject.getProfile().then((data:any)=>{
-            setUserName(data.displayName)
-          }).catch((error:any)=>{
-            console.log(error.toString())
-          })
-        }
-      } catch (e) { }
-
-
-    
-
+  
   }, []);
 
   // Provide `liff` object and `liffError` object
