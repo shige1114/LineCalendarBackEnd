@@ -2,6 +2,7 @@ import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { useState, useEffect } from "react";
+import liff from '@line/liff';
 function MyApp({ Component, pageProps }: any) {
   const [liffObject, setLiffObject] = useState(null);
   const [liffError, setLiffError] = useState(null);
@@ -34,7 +35,12 @@ function MyApp({ Component, pageProps }: any) {
   // to page component as property
   pageProps.liff = liffObject;
   pageProps.liffError = liffError;
-  return <Component {...pageProps} />
+  return (<>
+  <h1>{liff.getAccessToken()}</h1>
+  <Component {...pageProps} />
+  </>
+  
+  )
 }
 
 export default MyApp
