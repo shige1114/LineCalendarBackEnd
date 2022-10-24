@@ -7,6 +7,7 @@ import Button from 'react-bootstrap/Button';
 const Home: NextPage = (props:any) => {
   const { liff, liffError } = props;
   const calendar_id = (liff != null)?liff.getContext()?.groupId:''
+  console.log(liffError)
   const router= useRouter()
   const onClkickMove = () => {
 		const keyword = {
