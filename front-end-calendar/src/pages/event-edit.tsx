@@ -11,7 +11,7 @@ interface Props {
     date: number
     events: Event[]
     calendar_id: string
-    pageprops:any
+
 
 }
 const EventEditPage: React.FC<Props> = ({ date, events, calendar_id,...pageprops }) => {
