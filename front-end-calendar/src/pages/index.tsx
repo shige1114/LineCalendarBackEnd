@@ -7,7 +7,7 @@ import Button from 'react-bootstrap/Button';
 const Home: NextPage = (...props:any) => {
   const router= useRouter()
   const liff = props.liff
-
+  const token = (liff!=null)? liff.getAccessToken() : ""
   const onClkickMove = () => {
 		const keyword = {
 			calendar_id:""
@@ -17,7 +17,7 @@ const Home: NextPage = (...props:any) => {
   return (
     
     <>
-      {liff.getAccessToken()}
+      <>{token}</>
       <Button onClick={()=>onClkickMove()}>
         イベント登録
       </Button>
