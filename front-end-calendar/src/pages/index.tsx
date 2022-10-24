@@ -4,11 +4,10 @@ import Image from 'next/image'
 import { useRouter } from 'next/router'
 import styles from '../styles/Home.module.css'
 import Button from 'react-bootstrap/Button';
-const Home: NextPage = (props:any) => {
-  const { liff, liffError } = props;
-
-  
+const Home: NextPage = (...props:any) => {
   const router= useRouter()
+  const liff = props.liff
+
   const onClkickMove = () => {
 		const keyword = {
 			calendar_id:""
@@ -18,6 +17,7 @@ const Home: NextPage = (props:any) => {
   return (
     
     <>
+      {liff.getAccessToken()}
       <Button onClick={()=>onClkickMove()}>
         イベント登録
       </Button>

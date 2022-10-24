@@ -35,8 +35,8 @@ function MyApp({ Component, pageProps }: any) {
   // to page component as property
   pageProps.liff = liffObject;
   pageProps.liffError = liffError;
+
   return (<>
-  <h1>{liff.getAccessToken()}</h1>
   <Component {...pageProps} />
   </>
   
