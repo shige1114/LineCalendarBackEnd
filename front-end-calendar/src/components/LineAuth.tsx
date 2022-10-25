@@ -22,9 +22,9 @@ export const LineAouth: React.FC = () => {
 
                             const profile = await liff.getProfile()
                             const ctx = await liff.getContext()
-                            setGroupId(ctx?.groupId)
+                            setGroupId(ctx.groupId)
 
-                            setUserName(profile?.displayName)
+                            setUserName(profile.displayName)
 
                         } catch (e) { console.log("!error>>>" + e) }
                     }
