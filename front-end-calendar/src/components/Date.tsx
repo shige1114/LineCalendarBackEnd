@@ -16,17 +16,13 @@ const Date: React.FC<Props> = ({ date, events,calendar_id }) => {
 
 
 	const [d, setDate] = useState(0)
-	const useClkickMove = (d: number) => {
-		const keyword = {
-			date: d,
-			calendar_id:calendar_id
-		}
-		router.push({ pathname: 'event-edit', query: keyword })
-	}
-
 	useEffect(() => {
 		if (d != 0) {
-			useClkickMove(d)
+			const keyword = {
+				date: d,
+				calendar_id:calendar_id
+			}
+			router.push({ pathname: 'event-edit', query: keyword })
 		}
 
 	}, [d])
