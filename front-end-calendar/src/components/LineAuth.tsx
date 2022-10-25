@@ -27,7 +27,7 @@ export const LineAouth: React.FC = () => {
                                 setGroupId(ctx?.groupId)
                                 setUserName(profile?.displayName)
                                 
-                            } catch (e) { }
+                            } catch (e) { console.log(e) }
                         }
                     }
                 })
@@ -45,6 +45,7 @@ export const LineAouth: React.FC = () => {
 
     return (
         <>
+            
         </>
     )
 }
