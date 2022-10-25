@@ -4,34 +4,30 @@ import { Event, User, PageProps } from 'src/domain/entity'
 import { useRouter } from 'next/router'
 import DitailDate from 'src/components/DitailDate'
 import EventEdit from 'src/components/EventEdit'
-
+import { LineContext } from 'src/domain/context';
+import { useContext } from 'react';
 
 interface Props {
 
     date: number
     events: Event[]
     calendar_id: string
-
 }
-const EventEditPage: React.FC<Props> = ({ date, events, calendar_id,...pageProps}) => {
-    const router = useRouter()
-    const data = pageProps as PageProps
-    console.log(data)
-    const [user_name, setName] = useState((data.user_name != undefined && typeof(data.user_name)=="string") ? (data.user_name) : (""))
+const EventEditPage: React.FC<Props> = ({ date, events, calendar_id,}) => {
     //const user_name = (liff.isLoggedin())?liff.getProfile():""
+    const {userName} = useContext(LineContext)
     return (
         <>
 
             <Container>
                 <Col>
-                    <DitailDate events={events} date={date} user={user_name} />
+                    <DitailDate events={events} date={date} user={userName} />
                 </Col>
                 <Col></Col>
                 <Col>
                     <EventEdit date={date} calendar_id={calendar_id} />
                 </Col>
             </Container>
-
         </>
     )
 }

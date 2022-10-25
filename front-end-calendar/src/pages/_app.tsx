@@ -1,51 +1,67 @@
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { useState, useEffect } from "react";
+import { useState, useEffect, useSyncExternalStore } from "react";
 import liff from '@line/liff';
+import { getCalendar } from './api/getCalendar';
+import { LineProvider } from 'src/domain/context';
+import { LineAouth } from 'src/components/LineAuth';
 function MyApp({ Component, pageProps }: any) {
-  const [liffObject, setLiffObject] = useState(null);
-  const [liffError, setLiffError] = useState(null);
-  const [userName, setUserName] = useState("")
-  // Execute liff.init() when the app is initialized
-  useEffect(() => {
-    // to avoid `window is not defined` error
-    import("@line/liff").then((liff: any) => {
-      console.log("start liff.init()...");
 
-      liff
-        .init({ liffId: process.env.NEXT_PUBLIC_LIFF_ID })
-        .then(() => {
-          console.log("liff.init() done");
-          setLiffObject(liff);
-          liff.getProfile().then((data:any)=>{
-            setUserName(data.displayName)
-          }).catch((error:any)=>{
-            console.log(error.toString())
-          })
-        })
-        .catch((error: any) => {
-          console.log(`liff.init() failed: ${error}`);
-          if (!process.env.liffId) {
-            console.info(
-              "LIFF Starter: Please make sure that you provided `LIFF_ID` as an environmental variable."
-            );
-          }
-          setLiffError(error.toString());
-        });
-    });
+  // Execute liff.init() when the app is initialized
   
-  }, []);
+  /*
+  const getCalendarNumber = (month: string) => {
+    setCalendarNumber(getCalendar("2022" + "-" + month))
+  }
+  const get_user_name = async (liff: any) => {
+    if (liff.isLoggedIn()) {
+      try {
+        const profile = await liff.getProfile()
+        if (user_name != profile.displayName) {
+          setUserName(profile.displayName)
+        }
+      } catch (e) {
+        console.log(e)
+      }
+    }
+  }
+  const get_event = async (liff: any) => {
+    if (liff.isLoggedIn()) {
+      const groupId = (await liff.getContext())?.groupId
+      try {
+        const endpoint = "http://localhost:5000/webview/event_view"// 'https://line-chat-bot-1114.herokuapp.com/webview/event_view'//
+        const keyword = {
+          room_id: groupId,
+        }
+        const JSONdata = JSON.stringify(keyword)
+        const options = {
+          method: 'POST',
+          mode: "cors" as RequestMode,
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSONdata,
+        }
+        const response = await fetch(endpoint, options)
+        const result = await response.json()
+        const events = (result.events) ? result.events : []
+        if (events != event) { setEvent(events) }
+      } catch (e) {
+        console.log(e)
+      }
+    }*/
+
+  
 
   // Provide `liff` object and `liffError` object
   // to page component as property
-  pageProps.liff = liffObject;
-  pageProps.liffError = liffError;
-  pageProps.user_name = userName;
-
-  return (<>
-    <Component {...pageProps} />
-  </>
+  
+  return (
+    <LineProvider>
+      <LineAouth/>
+      <Component {...pageProps} />
+    </LineProvider>
 
   )
 }

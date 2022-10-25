@@ -16,7 +16,7 @@ const Date: React.FC<Props> = ({ date, events,calendar_id }) => {
 
 
 	const [d, setDate] = useState(0)
-	const onClkickMove = (d: number) => {
+	const useClkickMove = (d: number) => {
 		const keyword = {
 			date: d,
 			calendar_id:calendar_id
@@ -26,7 +26,7 @@ const Date: React.FC<Props> = ({ date, events,calendar_id }) => {
 
 	useEffect(() => {
 		if (d != 0) {
-			onClkickMove(d)
+			useClkickMove(d)
 		}
 
 	}, [d])
@@ -63,11 +63,6 @@ const Date: React.FC<Props> = ({ date, events,calendar_id }) => {
 			) : (
 				<></>
 			)}
-
-
-
-
-
 		</>
 
 	)
