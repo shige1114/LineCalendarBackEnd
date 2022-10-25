@@ -3,7 +3,7 @@ import React from 'react'
 import { LineContext } from "src/domain/context"
 export const LineAouth: React.FC = () => {
     const {
-        setUserName, setGroupId
+        groupId,setUserName, setGroupId
     } = useContext(LineContext)
 
 
@@ -27,7 +27,7 @@ export const LineAouth: React.FC = () => {
                                 setGroupId(ctx?.groupId)
                                 setUserName(profile?.displayName)
                                 
-                            } catch (e) { console.log(e) }
+                            } catch (e) { console.log("!error>>>"+ e) }
                         }
                     }
                 })
@@ -45,7 +45,7 @@ export const LineAouth: React.FC = () => {
 
     return (
         <>
-            
+            <h1>{groupId}</h1>
         </>
     )
 }
