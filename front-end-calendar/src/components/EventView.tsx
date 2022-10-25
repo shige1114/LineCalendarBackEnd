@@ -12,34 +12,33 @@ interface Props {
 	events: Event[]
 }
 
-const EventView: React.FC<Props> = ({ calendar, calendar_id,  events }) => {
+const EventView: React.FC<Props> = ({ calendar, calendar_id, events }) => {
 	const weeks = ['Sun', 'Mon', 'Tue', 'Web', 'Thu', 'Fri', 'Sat']
-	
+
 	return (
-		<>
-			<td>
-				<tr>
-					{weeks.map((d,index) => {
-						return (
-							<th key={index}> {d} </th>
-						)
-					})}
-				</tr>
-				{calendar?.map((week,index) => {
+		<td>
+			<tr>
+				{weeks.map((d, index) => {
 					return (
-						<tr key={index}>
-							{week.map((date,index) => {
-								return (
-									<th key={index}>
-										<Date date={date} events={events} calendar_id={calendar_id} />
-									</th>
-								)
-							})}
-						</tr>
+						<th key={index}> {d} </th>
 					)
 				})}
-			</td>
-		</>
+			</tr>
+			{calendar?.map((week, index) => {
+				return (
+					<tr key={index}>
+						{week.map((date, index) => {
+							return (
+								<th key={index}>
+									<Date date={date} events={events} calendar_id={calendar_id} />
+								</th>
+							)
+						})}
+					</tr>
+				)
+			})}
+		</td>
+
 
 	)
 }

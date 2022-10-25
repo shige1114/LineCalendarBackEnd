@@ -1,15 +1,16 @@
 import { useContext, useEffect, useState } from "react"
 import React from 'react'
 import { LineContext } from "src/domain/context"
+import liff from "@line/liff"
+
 export const LineAouth: React.FC = () => {
     const {
         groupId, setUserName, setGroupId
     } = useContext(LineContext)
+    const [liffObject, setLiffObject] = useState<any>(null)
 
-    const [errorLine, setErrorLine] = useState("no error!")
     useEffect(() => {
         // to avoid `window is not defined` error
-
         import("@line/liff").then((liff: any) => {
             console.log("start liff.init()...");
 
@@ -17,6 +18,23 @@ export const LineAouth: React.FC = () => {
                 .init({ liffId: process.env.NEXT_PUBLIC_LIFF_ID })
                 .then(() => {
                     console.log("liff.init() done");
+                    setLiffObject(liff)
+                    console.log(liff)
+
+
+                    liff.ready.then(() => {
+                        const profile = liff.getProfile()
+                        const ctx = liff.getContext()
+                        console.log(ctx)
+                        console.log(profile)
+                        setGroupId(ctx.groupId)
+                        setUserName(profile.displayName)
+                    })
+
+
+
+
+
                 })
                 .catch((error: any) => {
                     console.log(`liff.init() failed: ${error}`);
@@ -26,23 +44,14 @@ export const LineAouth: React.FC = () => {
                         );
                     }
                 });
-            async () => {
-                
-                    const profile = await liff.getProfile()
-                    const ctx = await liff.getContext()
-                    setGroupId(ctx.groupId)
 
-                    setUserName(profile.displayName)
 
-               
-            }
         });
 
     }, []);
 
+
     return (
-        <>
-            <h1>{errorLine}</h1>
-        </>
+        <h1>aaaa</h1>
     )
 }

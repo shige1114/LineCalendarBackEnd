@@ -28,6 +28,7 @@ const EventViewPage: React.FC = () => {
 
     return (
         <>
+            
             <EventView
                 calendar={calendarNum}
                 calendar_id={groupId}
