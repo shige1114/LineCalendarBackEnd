@@ -3,7 +3,7 @@ import React from 'react'
 import { LineContext } from "src/domain/context"
 export const LineAouth: React.FC = () => {
     const {
-        groupId,setUserName, setGroupId
+        groupId, setUserName, setGroupId
     } = useContext(LineContext)
 
 
@@ -17,19 +17,18 @@ export const LineAouth: React.FC = () => {
                 .init({ liffId: process.env.NEXT_PUBLIC_LIFF_ID })
                 .then(() => {
                     console.log("liff.init() done");
-                    if (liff.isLoggedIn()) {
+                    async () => {
+                        try {
 
-                        async () => {
-                            try {
-                                const ctx = await liff.getContext()
-                                const profile = await liff.getProfile()
+                            const profile = await liff.getProfile()
+                            const ctx = await liff.getContext()
+                            setGroupId(ctx?.groupId)
 
-                                setGroupId(ctx?.groupId)
-                                setUserName(profile?.displayName)
-                                
-                            } catch (e) { console.log("!error>>>"+ e) }
-                        }
+                            setUserName(profile?.displayName)
+
+                        } catch (e) { console.log("!error>>>" + e) }
                     }
+
                 })
                 .catch((error: any) => {
                     console.log(`liff.init() failed: ${error}`);
