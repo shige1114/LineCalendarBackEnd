@@ -27,14 +27,14 @@ export const LineAouth: React.FC = () => {
                     }
                 });
             async () => {
-                try {
+                
                     const profile = await liff.getProfile()
                     const ctx = await liff.getContext()
                     setGroupId(ctx.groupId)
 
                     setUserName(profile.displayName)
 
-                } catch (e: any) { setErrorLine(e.toString()) }
+               
             }
         });
 
