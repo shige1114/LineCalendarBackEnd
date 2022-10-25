@@ -34,7 +34,7 @@ const EventEditPage: React.FC<Props> = ({ date, events, calendar_id,}) => {
 export async function getServerSideProps(context: any) {
     const calendarId = context.query.calendar_id
     const date = context.query.date
-    const endpoint = 'http://localhost:5000/webview/event_view'//"https://line-chat-bot-1114.herokuapp.com/webview/event_view"//
+    const endpoint = process.env.EVENT_VIEW as string//"https://line-chat-bot-1114.herokuapp.com/webview/event_view"//
     const keyword = {
         room_id: calendarId,
     }

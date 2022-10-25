@@ -30,7 +30,7 @@ const VoteButton: React.FC<Props> = ({ event, member }) => {
         }
     },[vote])
     const updateEvent = async () => {
-        const end_point = "https://line-chat-bot-1114.herokuapp.com/webview/event_vote"
+        const end_point = process.env.EVENT_VOTE as string
         const data = { "event_id": event.id, "user_id": member, "vote": vote }
         if (vote == 'up') {
             setVotenum(vote_num + 1)

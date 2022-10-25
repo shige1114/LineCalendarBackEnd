@@ -25,7 +25,7 @@ const EventViewPage: React.FC = () => {
     }
     useEffect(() => {
         async () => {
-            const response = await fetch("http://localhost:5000/webview/event_view", options)
+            const response = await fetch(process.env.EVENT_VIEW as string, options)
             const result = await response.json()
             setCalendarNum(getCalendar("2022" + "-" + result.calendar["month"]))
             setEvents(result.events)
