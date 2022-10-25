@@ -4,13 +4,7 @@ import { getCalendar } from "src/pages/api/getCalendar"
 import EventView from 'src/components/EventView';
 import { LineContext } from 'src/domain/context';
 import { useContext } from 'react';
-interface Props {
-    error: Boolean | null
-    calendar_id: string
-    user_id: string
-    events: Event[]
-    calendar: number[][]
-}
+
 const EventViewPage: React.FC = () => {
     const { groupId } = useContext(LineContext)
     const [calendarNum, setCalendarNum] = useState<number[][]>([])
@@ -25,7 +19,7 @@ const EventViewPage: React.FC = () => {
     }
     useEffect(() => {
         async () => {
-            const response = await fetch(process.env.NEXT_PUBLIC_EVENT_VIEW as string, options)
+            const response = await fetch("https://line-chat-bot-1114.herokuapp.com/webview/event_view", options)
             const result = await response.json()
             setCalendarNum(getCalendar("2022" + "-" + result.calendar["month"]))
             setEvents(result.events)
