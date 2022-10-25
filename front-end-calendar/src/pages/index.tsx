@@ -30,7 +30,7 @@ const EventViewPage: React.FC = () => {
             setCalendarNum(getCalendar("2022" + "-" + result.calendar["month"]))
             setEvents(result.events)
         }
-    })
+    },[])
 
     return (
         <>
