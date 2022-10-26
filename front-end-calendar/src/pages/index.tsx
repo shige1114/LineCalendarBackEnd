@@ -21,14 +21,22 @@ const EventViewPage: React.FC = () => {
     useEffect(() => {
         const get_calendar = async () => {
             if(groupId != ""){
-                console.log(groupId)
+                try{
+                    console.log(groupId)
                 const response = await fetch("https://line-chat-bot-1114.herokuapp.com/webview/event_view", options)
                 const result = await response.json()
-                setCalendarNum(getCalendar("2022" + "-" + result.calendar["month"]))
+                const cal =  getCalendar("2022" + "-" + result.calendar["month"])
+                setCalendarNum(cal)
                 setEvents(result.events)
+                return true
+                }catch(e){
+                    return e
+                }
+                
             }
         }
-        get_calendar()
+        const status = get_calendar()
+        console.log(status)
     },[groupId])
 
     return (
