@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react"
 import React from 'react'
 import { LineContext } from "src/domain/context"
-import liff from "@line/liff"
+
 
 export const LineAouth: React.FC = () => {
     const {
@@ -52,6 +52,6 @@ export const LineAouth: React.FC = () => {
 
 
     return (
-        <h1>aaaa</h1>
+        <h1>{groupId}</h1>
     )
 }

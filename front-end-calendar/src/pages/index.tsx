@@ -17,18 +17,20 @@ const EventViewPage: React.FC = () => {
         },
         data: JSON.stringify({ room_id: groupId })
     }
+    
     useEffect(() => {
-        async () => {
+        const get_calendar = async () => {
             const response = await fetch("https://line-chat-bot-1114.herokuapp.com/webview/event_view", options)
             const result = await response.json()
             setCalendarNum(getCalendar("2022" + "-" + result.calendar["month"]))
             setEvents(result.events)
         }
-    },[groupId])
+        get_calendar()
+    }, [groupId])
 
     return (
         <>
-            
+
             <EventView
                 calendar={calendarNum}
                 calendar_id={groupId}
