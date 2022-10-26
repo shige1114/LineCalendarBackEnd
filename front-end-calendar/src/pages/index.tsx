@@ -24,7 +24,7 @@ const EventViewPage: React.FC = () => {
 
                 body: JSON.stringify({ room_id: "Cdf358fb1484640975bef1fee49ad3920" })//Cdf358fb1484640975bef1fee49ad3920
             }
-            const response = await fetch("https://line-chat-bot-1114.herokuapp.com", options)//https://line-chat-bot-1114.herokuapp.com
+            const response = await fetch("https://line-chat-bot-1114.herokuapp.com/webview/event_view", options)//https://line-chat-bot-1114.herokuapp.com
             const result = await response.json()
             const cal = getCalendar("2022" + "-" + result.calendar["month"])
             setCalendarNum(cal)
