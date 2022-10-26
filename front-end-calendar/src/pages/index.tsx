@@ -26,7 +26,7 @@ const EventViewPage: React.FC = () => {
             setEvents(result.events)
         }
         get_calendar()
-    },)
+    },[groupId])
 
     return (
         <>
