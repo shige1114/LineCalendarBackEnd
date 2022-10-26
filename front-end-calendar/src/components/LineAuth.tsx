@@ -23,6 +23,9 @@ export const LineAouth: React.FC = () => {
 
 
                     liff.ready.then(() => {
+                        if (process.env.NODE_ENV == "development"){
+                            liff.login()
+                        }
                         const profile = liff.getProfile()
                         const ctx = liff.getContext()
                         console.log(ctx)

@@ -17,7 +17,7 @@ const EventViewPage: React.FC = () => {
         },
         data: JSON.stringify({ room_id: groupId })
     }
-    
+
     useEffect(() => {
         const get_calendar = async () => {
             const response = await fetch("https://line-chat-bot-1114.herokuapp.com/webview/event_view", options)
@@ -26,7 +26,7 @@ const EventViewPage: React.FC = () => {
             setEvents(result.events)
         }
         get_calendar()
-    }, [])
+    },)
 
     return (
         <>
