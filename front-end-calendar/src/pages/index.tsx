@@ -9,35 +9,30 @@ const EventViewPage: React.FC = () => {
     const { groupId } = useContext(LineContext)
     const [calendarNum, setCalendarNum] = useState<number[][]>([])
     const [events, setEvents] = useState<Event[]>([])
-    const options = {
-        method: 'POST',
-        mode: "cors" as RequestMode,
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        data: JSON.stringify({ room_id: groupId })
-    }
+    
 
     useEffect(() => {
         const get_calendar = async () => {
-            if(groupId != ""){
-                try{
-                    console.log(groupId)
-                const response = await fetch("https://line-chat-bot-1114.herokuapp.com/webview/event_view", options)
-                const result = await response.json()
-                const cal =  getCalendar("2022" + "-" + result.calendar["month"])
-                setCalendarNum(cal)
-                setEvents(result.events)
-                return true
-                }catch(e){
-                    return e
-                }
-                
+
+            console.log(groupId)
+            const options = {
+                method: 'POST',
+                mode: "cors" as RequestMode,
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                data: JSON.stringify({ room_id: "Cdf358fb1484640975bef1fee49ad3920" })
             }
+            const response = await fetch("https://line-chat-bot-1114.herokuapp.com/webview/event_view", options)
+            const result = await response.json()
+            const cal = getCalendar("2022" + "-" + result.calendar["month"])
+            setCalendarNum(cal)
+            setEvents(result.events)
+            return true
         }
         const status = get_calendar()
         console.log(status)
-    },[groupId])
+    }, [groupId])
 
     return (
         <>

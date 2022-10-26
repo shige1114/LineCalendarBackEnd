@@ -59,7 +59,7 @@ function MyApp({ Component, pageProps }: any) {
   
   return (
     <LineProvider>
-      <LineAouth/>
+      
       <Component {...pageProps} />
     </LineProvider>
 
