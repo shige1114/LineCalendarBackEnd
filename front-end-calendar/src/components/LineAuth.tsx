@@ -55,6 +55,6 @@ export const LineAouth: React.FC = () => {
 
 
     return (
-        <h1>{groupId}</h1>
+        <></>//<h1>{groupId}</h1>
     )
 }
