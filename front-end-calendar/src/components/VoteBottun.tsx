@@ -12,7 +12,7 @@ interface Props {
 
 const VoteButton: React.FC<Props> = ({ event, member }) => {
     const [vote, setVote] = useState('up')
-
+    const {userName} = useContext(LineContext)
     const [vote_num, setVotenum] = useState(event.vote_num)
     const [coler,setC] = useState('blue')
     useEffect(()=>{
@@ -33,7 +33,7 @@ const VoteButton: React.FC<Props> = ({ event, member }) => {
     },[vote])
     const updateEvent = async () => {
         const end_point = process.env.NEXT_PUBLIC_EVENT_VOTE as string
-        const data = { event_id: event.id, user_id: member, vote: vote }
+        const data = { event_id: event.id, user_id: userName, vote: vote }
         if (vote == 'up') {
             setVotenum(vote_num + 1)
         } else if(vote == 'down') {
