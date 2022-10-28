@@ -5,7 +5,7 @@ import { LineContext } from "src/domain/context"
 
 export const LineAouth: React.FC = () => {
     const {
-        groupId, setUserName, setGroupId
+        userName,groupId, setUserName, setGroupId
     } = useContext(LineContext)
     const [liffObject, setLiffObject] = useState<any>(null)
 
@@ -55,6 +55,6 @@ export const LineAouth: React.FC = () => {
 
 
     return (
-        <></>//<h1>{groupId}</h1>
+        <h1>{userName}</h1>//<h1>{groupId}</h1>
     )
 }
