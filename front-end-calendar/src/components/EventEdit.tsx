@@ -27,7 +27,6 @@ const EventEdit: React.FC<Props> = ({ date,calendar_id }) => {
         const JSONdata = JSON.stringify(data)
         const options = {
             method:'POST',
-            mode:"cors"
             headers: {
                 'Content-Type':'application/json',
             },
