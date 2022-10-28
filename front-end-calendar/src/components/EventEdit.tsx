@@ -38,8 +38,9 @@ const EventEdit: React.FC<Props> = ({ date,calendar_id }) => {
         const result = await response.json()
 
         if (result.status == 'succes') {
-            const keyword = {"calendar_id":calendar_id,"date":date}
-            router.push({ pathname: 'event-edit', query: keyword }  )
+            //const keyword = {"calendar_id":calendar_id,"date":date}
+            //router.push({ pathname: 'event-edit', query: keyword }  )
+            router.push("/")
         }else{
             router.push('/')
         }
