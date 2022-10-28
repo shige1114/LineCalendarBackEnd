@@ -24,7 +24,7 @@ const Date: React.FC<Props> = ({ date, events,calendar_id }) => {
 		if (d != 0) {
 			const keyword = {
 				date: d,
-				calendar_id:calendar_id
+				calendar_id:groupId
 			}
 			router.push({ pathname: 'event-edit', query: keyword })
 		}

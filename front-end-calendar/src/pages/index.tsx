@@ -14,7 +14,7 @@ const EventViewPage: React.FC = () => {
     useEffect(() => {
         const get_calendar = async () => {
             const data = {
-                room_id: 'Cdf358fb1484640975bef1fee49ad3920'//""
+                room_id: groupId//""
             }
             const jdata = JSON.stringify(data)
             console.log(groupId)
