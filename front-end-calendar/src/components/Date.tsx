@@ -3,6 +3,9 @@ import Card from 'react-bootstrap/Card';
 import { Calendar, Event, User } from '../domain/entity';
 import { useRouter } from 'next/router';
 import { useWindowSize } from 'src/pages/api/websize'
+import { LineContext } from 'src/domain/context';
+import { useContext } from 'react';
+
 type Props = {
 	date: number
 	events: Event[]
@@ -12,6 +15,7 @@ type Props = {
 const Date: React.FC<Props> = ({ date, events,calendar_id }) => {
 	const router = useRouter()
 	const windowSize = useWindowSize()
+	const { groupId } = useContext(LineContext)
 
 
 

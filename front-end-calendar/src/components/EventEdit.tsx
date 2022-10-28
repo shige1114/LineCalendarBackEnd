@@ -11,6 +11,7 @@ interface Props {
 
 const EventEdit: React.FC<Props> = ({ date,calendar_id }) => {
     const router = useRouter()
+    
     const buttonClick = async (context: any) => {
         context.preventDefault()
         
