@@ -31,7 +31,7 @@ export const LineAouth: React.FC = () => {
                         console.log(ctx)
                         console.log(profile)
                         setGroupId(ctx.groupId)
-                        setUserName(profile.displayName)
+                        setUserName(profile.userId)
                     })
 
 
