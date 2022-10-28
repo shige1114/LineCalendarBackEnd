@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react'
 
 import { Event, User } from 'src/domain/entity'
 import { Container, Row, Col } from 'react-bootstrap'
-
+import { LineContext } from 'src/domain/context';
+import { useContext } from 'react';
 import Button from 'react-bootstrap/Button';
 interface Props {
     event: Event
@@ -11,6 +12,7 @@ interface Props {
 
 const VoteButton: React.FC<Props> = ({ event, member }) => {
     const [vote, setVote] = useState('up')
+
     const [vote_num, setVotenum] = useState(event.vote_num)
     const [coler,setC] = useState('blue')
     useEffect(()=>{
@@ -31,7 +33,7 @@ const VoteButton: React.FC<Props> = ({ event, member }) => {
     },[vote])
     const updateEvent = async () => {
         const end_point = process.env.NEXT_PUBLIC_EVENT_VOTE as string
-        const data = { "event_id": event.id, "user_id": member, "vote": vote }
+        const data = { event_id: event.id, user_id: member, vote: vote }
         if (vote == 'up') {
             setVotenum(vote_num + 1)
         } else if(vote == 'down') {
