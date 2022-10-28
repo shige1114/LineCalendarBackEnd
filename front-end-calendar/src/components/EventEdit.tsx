@@ -27,6 +27,7 @@ const EventEdit: React.FC<Props> = ({ date,calendar_id }) => {
         const JSONdata = JSON.stringify(data)
         const options = {
             method:'POST',
+            mode:"cors"
             headers: {
                 'Content-Type':'application/json',
             },
@@ -38,7 +39,7 @@ const EventEdit: React.FC<Props> = ({ date,calendar_id }) => {
         const result = await response.json()
 
         if (result.status == 'succes') {
-            const keyword = {"room_id":calendar_id,"date":date}
+            const keyword = {"calendar_id":calendar_id,"date":date}
             router.push({ pathname: 'event-edit', query: keyword }  )
         }else{
             router.push('/')
