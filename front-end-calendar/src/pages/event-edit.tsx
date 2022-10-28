@@ -15,7 +15,8 @@ interface Props {
 }
 const EventEditPage: React.FC<Props> = ({ date, events, calendar_id,}) => {
     //const user_name = (liff.isLoggedin())?liff.getProfile():""
-    const {userName} = useContext(LineContext)
+    const {userName,groupId} = useContext(LineContext)
+    
     return (
         <>
 
@@ -25,7 +26,7 @@ const EventEditPage: React.FC<Props> = ({ date, events, calendar_id,}) => {
                 </Col>
                 <Col></Col>
                 <Col>
-                    <EventEdit date={date} calendar_id={calendar_id} />
+                    <EventEdit date={date} calendar_id={groupId} />
                 </Col>
             </Container>
         </>
