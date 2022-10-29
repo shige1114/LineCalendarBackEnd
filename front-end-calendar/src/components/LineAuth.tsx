@@ -5,10 +5,10 @@ import { LineContext } from "src/domain/context"
 
 export const LineAouth: React.FC = () => {
     const {
-        userName,groupId, setUserName, setGroupId
+        userName, groupId, setUserName, setGroupId
     } = useContext(LineContext)
     const [liffObject, setLiffObject] = useState<any>(null)
-
+    const [er, setEr] = useState("")
     useEffect(() => {
         // to avoid `window is not defined` error
         import("@line/liff").then((liff: any) => {
@@ -23,15 +23,19 @@ export const LineAouth: React.FC = () => {
 
 
                     liff.ready.then(() => {
-                        if (process.env.NODE_ENV == "development"){
+                        if (process.env.NODE_ENV == "development") {
                             liff.login()
                         }
-                        const profile = liff.getProfile()
+
+                        liff.getProfile()
+                        .then((profile:any)=>{
+                            setUserName(profile.displayName)
+                        })
+                        .catch((err:any)=>{
+                            setEr(err)
+                        })
                         const ctx = liff.getContext()
-                        console.log(ctx)
-                        console.log(profile)
                         setGroupId(ctx.groupId)
-                        setUserName(profile.userId)
                     })
 
 
